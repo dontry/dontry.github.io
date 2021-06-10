@@ -42,24 +42,26 @@ const NavWrapper = styled(Flex.withComponent('nav'))`
 `;
 
 const NavBar = () => {
+  const pathname = typeof window !== "undefined" ? window.location.pathname : ""
+
   return (
     <Header>
       <Container>
         <StyledFlex>
           <NavWrapper>
-            <NavLink isActive={location.pathname === '/'} title="Home" to="/" />
+            <NavLink isActive={pathname === '/'} title="Home" to="/" />
             <NavLink
-              isActive={location.pathname.includes('/archive')}
+              isActive={pathname.includes('/archive')}
               title="Archive"
               to="archive"
             />
             <NavLink
-              isActive={location.pathname.includes('/portfolios')}
+              isActive={pathname.includes('/portfolios')}
               title="Portfolios"
               to="portfolios"
             />
             <NavLink
-              isActive={location.pathname.includes('/my_cv')}
+              isActive={pathname.includes('/my_cv')}
               title="Profile"
               to="my_cv"
             />
