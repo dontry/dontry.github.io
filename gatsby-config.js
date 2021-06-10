@@ -3,7 +3,7 @@ module.exports = {
     title: 'Dong Cai Web Dev Blog',
     siteUrl: `https://dontry.github.io`,
     description: 'A blog for web development',
-    author-name: 'Dontry',
+    author: 'Dontry',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
