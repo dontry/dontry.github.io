@@ -3,7 +3,7 @@ date: '2021-06-02'
 title: 'Angular ControlContainer'
 excerpt: 'ControlContainer solves the issue how the parent form accesses or controls and child form when they reside in different components. '
 tags:
-  - Angular
+  - ANGULAR
 ---
 
 A common nested form usually looks like this. Here *profileForm* contains a nested form *address* FormGroup. If *profileForm* needs to get access the *address* FormGroup, we can simply do this: `profileForm.get('address')`.

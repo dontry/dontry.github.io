@@ -3,7 +3,7 @@ date: '2019-06-14'
 title: 'React component lifecycle'
 excerpt: 'React component lifecycle is a very important part of React. I created a demo to illustrate how it works with full details'
 tags:
-  - React
+  - REACT
 ---
 
 React component provides several "lifecycle methods" that you can hook in at particular times. This [lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram) is very useful that you can use it as a cheat sheet for reference. Recently, I ran into a very complex component that I found it hard to wrap my head around . The most difficult part of that component is asynchronously fetching data in _componentDidUpdate_ method in certain conditions. At the same time, _shouldComponentUpdate_ method should be used properly to avoid redundant rendering. Therefore, I created a demo to simplify the props and state and retain the core logic. This demo has a button. When the button is clicked, the demo generates a random number consecutively ranging from 0 to 5 until the difference between current number and previous number is not greater than 1 or it throws an error.
