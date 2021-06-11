@@ -622,3 +622,10 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+code.language-text {
+    background-color: #ebebeb !important;
+    color: #222 ;
+    padding-left: 0.5em !important;
+    padding-right: 0.2em !important;
+}
