@@ -19,17 +19,13 @@ module.exports = async ({ actions, graphql }) => {
       allMarkdownRemark(limit: 1000) {
         edges {
           node {
-            html
             id
-            excerpt(pruneLength: 280)
             frontmatter {
               title
               excerpt
               tags
             }
             fields {
-              slug
-              date(formatString: "MMMM DD, YYYY")
               path
             }
           }
@@ -45,7 +41,7 @@ module.exports = async ({ actions, graphql }) => {
   const posts = res.data.allMarkdownRemark.edges;
 
   posts.forEach(({ node }, index) => {
-    const slug = node.fields.slug;
+    const id = node.id
     const path = node.fields.path;
     const prev = index === posts.length - 1 ? null : posts[index + 1].node;
     const next = index === 0 ? null : posts[index - 1].node;
@@ -54,8 +50,7 @@ module.exports = async ({ actions, graphql }) => {
       path: path,
       component: blogPostTemplate,
       context: {
-        title: node.frontmatter.title,
-        slug,
+        id,
         prev,
         next,
       },

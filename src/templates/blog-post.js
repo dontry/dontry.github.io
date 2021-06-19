@@ -60,8 +60,8 @@ const BlogPostTemplate = ({ data, location, pathContext }) => {
 export default BlogPostTemplate;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+  query BlogPostBySlug($id: String!) {
+    markdownRemark( id: { eq: $id }) {
       html
       frontmatter {
         title
