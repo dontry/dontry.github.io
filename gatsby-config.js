@@ -31,6 +31,13 @@ module.exports = {
               maxWidth: 970,
             },
           },
+          {
+            resolve: 'gatsby-remark-graph',
+            options: {
+              language: 'mermaid',
+              theme: 'default',
+            },
+          },
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-prismjs',
         ],

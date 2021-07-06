@@ -631,3 +631,7 @@ code.language-text {
 code.language-text::after {
   content: "";
 }
+
+.gatsby-highlight, .mermaid {
+  margin-bottom: 2rem;
+}
