@@ -8,11 +8,13 @@ tags:
 ---
 # Overview
 The following diagram represents the overall general flow of application state
+
 ![architecture](./images/renewal.svg)
 
 ## Component
 
-The component retrieve the data from [Store](#store) with [Selectors](#selectors). If the data structure is quite complex, we can add an extra  mapper layer to transform store data into a view model. This is very helpful to decouple the view model from the component. For example, I would create a view model for a complex form group. Each input field has its own form property model including `value`, `visible`, `validator` etc. When a input field's behavior is not expected, I cna easily identify which property of the input field causes the issues.
+The component retrieve the data from [Store](#store) with [Selectors](#selectors). If the data structure is quite complex, we can add an extra  mapper layer to transform store data into a view model. This is very helpful to decouple the view model from the component. For example, I like to create a view model for a complex form group. Each input field has its own form property model including `value`, `visible`, `validator` etc. When a input field's behavior is not expected, I can easily identify which property of the input field causes the issues.
+
 
 ```typescript
 export class Component extends AbstractConnectableComponent implements OnInit {
@@ -31,7 +33,7 @@ export class Component extends AbstractConnectableComponent implements OnInit {
 }
 ```
 ## Actions
-Actions are one of the important building blocks in NgRx. It's like a messengers carrying information being sent from one place to another. It's essentially a plain object. You use `ofType` operators to capture actions in NgRx. As such, it could be received by components, effects or reducers. 
+Actions are one of the important building blocks in NgRx. It's like a messengers carrying information being sent from one place to another. An action is essentially a plain object. You use `ofType` operators to capture actions in NgRx. As such, it could be received by components, effects or reducers. 
 
 Define a new action
 ```typescript
@@ -41,6 +43,7 @@ const fetchFee = createAction(
 );
 ```
 ## Store(State)
+
 ```typescript
 export interface FeesState extends Synchronizable, EntityState<Fee> {}
 ```
@@ -81,7 +84,7 @@ export class FeeEffects {
 ```
 
 ## Reducers
-Reducers in NgRx are responsible for handling transitions from one state to the next state in your application. Reducer functions handle these transitions by determining which actions to handle based on the action's type.
+Reducers in NgRx are responsible for handling transitions from one state to the next state in your application. Reducer functions handle these transitions by determining which [actions](#actions) to handle based on the action's type.
 ```typescript
 export const feesAdapter: EntityAdapter<Fee> = createEntityAdapter<Fee>();
 export const feesInitialState: FeesState = feesAdapter.getInitialState({
