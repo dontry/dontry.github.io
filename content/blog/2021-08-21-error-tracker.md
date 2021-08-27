@@ -1,10 +1,13 @@
 ---
 date: 2021-08-21
 title: Validation Error Tracker for Form Fields
-excerpt: 
+excerpt: A service that collects validation error globally.
 tags: 
  - ANGULAR
 ---
+
+Angular provides form control APIs to collect the validation errors within a form group. 
+However, it is tricky to gather validation errors across multiple form groups in a general way. What we do is to create a global registry service. Each new form element component will be registered under the registry service. This approach makes it for us to track all validation errors on one single page.
 
 ```typescript
 @Injectable()
@@ -59,6 +62,7 @@ export abstract class AbstractFormElementComponent implements ControlValueAccess
   public ngOnInit(): void {
       this.control = this.ngControl.control;
 
+    // register the component in initialization
       if (this.formElementRegistryService) {
         this.formElementRegistryService.register(this);
       }
