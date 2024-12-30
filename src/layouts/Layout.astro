@@ -2,6 +2,7 @@
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 import BaseHead from '../components/BaseHead.astro';
+import { getCollection } from 'astro:content';
 
 interface Props {
   title: string;
@@ -11,6 +12,7 @@ interface Props {
 const { title, description = 'A personal blog built with Astro' } = Astro.props;
 
 const pathname = Astro.url.pathname;
+const posts = await getCollection('blog');
 ---
 
 <!doctype html>
@@ -20,7 +22,7 @@ const pathname = Astro.url.pathname;
   </head>
   <body>
     <div class="min-h-[calc(100vh-60px)]">
-      <NavBar client:load pathname={pathname} />
+      <NavBar client:load pathname={pathname} posts={posts} />
       <main class="max-w-[860px] w-[calc(100%-2em)] mx-auto py-12 px-4">
         <slot />
       </main>

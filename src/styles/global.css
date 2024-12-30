@@ -89,9 +89,11 @@ code {
 }
 pre {
 	padding: 1.5em;
+	margin-bottom: 1rem;
 }
 pre > code {
 	all: unset;
+	font-size: 1rem;
 }
 blockquote {
 	border-left: 4px solid var(--accent);
