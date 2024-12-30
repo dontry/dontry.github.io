@@ -14,7 +14,7 @@ export async function getStaticPaths() {
   ];
 
   return tags.map((tag) => ({
-    params: { tag: tag.toLowerCase() },
+    params: { tag },
     props: {
       posts: posts.filter((post: CollectionEntry<"blog">) =>
         post.data.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())

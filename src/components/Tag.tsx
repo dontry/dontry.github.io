@@ -27,7 +27,7 @@ const smallClasses = `
 
 const Tag: React.FC<TagProps> = ({ tag, to, size = 'normal' }) => (
   <span className={`${baseClasses} ${size === 'small' ? smallClasses : ''}`}>
-    <a href={to || `/archive/tags/${tag}`} className={linkClasses}>
+    <a href={to || `/tags/${tag}`} className={linkClasses}>
       {tag}
     </a>
   </span>
