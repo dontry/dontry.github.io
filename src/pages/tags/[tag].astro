@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import MarkdownExcerpt from "../../components/MarkdownExcerpt";
+import { sortPosts } from "../../utils/sort";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const tags = [
+    ...new Set(
+      posts.flatMap((post: CollectionEntry<"blog">) => post.data.tags || [])
+    ),
+  ];
+
+  return tags.map((tag) => ({
+    params: { tag: tag.toLowerCase() },
+    props: {
+      posts: posts.filter((post: CollectionEntry<"blog">) =>
+        post.data.tags?.some((t) => t.toLowerCase() === tag.toLowerCase())
+      ),
+      tag,
+    },
+  }));
+}
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  tag: string;
+}
+
+const { posts, tag } = Astro.props;
+const sortedPosts = sortPosts(posts);
+---
+
+<Layout title={`Posts tagged "${tag}" - Dong Cai's Blog`}>
+  <h1>Posts tagged "{tag}"</h1>
+  <div>
+    {
+      sortedPosts.map((post) => (
+        <MarkdownExcerpt
+          client:load
+          post={{
+            frontmatter: {
+              title: post.data.title,
+              tags: post.data.tags,
+              excerpt: post.data.excerpt,
+            },
+            fields: {
+              path: `/blog/${post.id}`,
+              date: post.data.date
+                ? post.data.date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })
+                : "",
+            },
+            excerpt: post.data.excerpt,
+          }}
+        />
+      ))
+    }
+  </div>
+</Layout>
+

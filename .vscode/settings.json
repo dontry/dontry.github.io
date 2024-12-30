@@ -1,9 +1,0 @@
-{
-    "javascript.validate.enable": false,
-    "cSpell.ignoreWords": [
-        "transpiles"
-    ],
-    "cSpell.words": [
-        "frontmatter"
-    ]
-}
