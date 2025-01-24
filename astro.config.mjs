@@ -7,6 +7,15 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	output: 'static',
+	site: 'https://dontry.github.io',
 	integrations: [mdx(), sitemap(), react(), tailwind()],
+	markdown: {
+		shikiConfig: {
+			themes: {
+				light: 'github-light',
+				dark: 'github-dark',
+			}
+		},
+	},
 });

@@ -27,7 +27,7 @@ const MarkdownExcerpt: React.FC<MarkdownExcerptProps> = ({ post }) => {
       <h2 className="mb-1 text-lg font-medium">
         <a 
           href={fields.path} 
-          className="text-[#3a3a3a] hover:underline"
+          className="text-gray-900 dark:text-gray-50 hover:text-accent dark:hover:text-accent hover:underline"
           aria-label={`Read ${title}`}
         >
           {title}
@@ -35,7 +35,7 @@ const MarkdownExcerpt: React.FC<MarkdownExcerptProps> = ({ post }) => {
       </h2>
       <div className="mb-1 text-sm">
         {!!fields.date  && (
-          <time className="font-light text-gray-600 inline-block mr-5 mb-2" dateTime={new Date(fields.date).toLocaleDateString()}>
+          <time className="font-light text-gray-500 dark:text-gray-400 inline-block mr-5 mb-2" dateTime={new Date(fields.date).toLocaleDateString()}>
             {fields.date}
           </time>
         )}
@@ -45,7 +45,7 @@ const MarkdownExcerpt: React.FC<MarkdownExcerptProps> = ({ post }) => {
           ))}
         </div>
       </div>
-      <p className="overflow-hidden line-clamp-3 p-0 font-light leading-tight">
+      <p className="overflow-hidden line-clamp-3 p-0 font-light leading-tight text-gray-600 dark:text-gray-300">
         {frontmatter.excerpt || post.excerpt}
       </p>
     </article>

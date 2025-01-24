@@ -95,13 +95,13 @@ const Search: React.FC<SearchProps> = ({ posts }) => {
         {!isExpanded ? (
           <button
             onClick={handleSearchIconClick}
-            className="p-1 hover:text-accent transition-colors group"
+            className="p-1 hover:text-accent transition-colors group text-gray-700 dark:text-gray-300"
             aria-label="Open search (⌘K)"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="w-6 h-6">
               <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
             </svg>
-            <span className="hidden group-hover:block absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 text-xs bg-gray-800 text-white rounded whitespace-nowrap">
+            <span className="hidden group-hover:block absolute top-full left-1/2 -translate-x-1/2 mt-1 px-2 py-1 text-xs bg-gray-800 dark:bg-gray-700 text-white rounded whitespace-nowrap">
               Search (⌘K)
             </span>
           </button>
@@ -113,41 +113,41 @@ const Search: React.FC<SearchProps> = ({ posts }) => {
               value={query}
               onChange={handleSearch}
               placeholder="Search posts..."
-              className="w-full rounded-lg border border-gray-300 pl-9 pr-4 py-2 focus:border-accent focus:outline-none"
+              className="w-full rounded-lg border border-gray-300 dark:border-gray-600 pl-9 pr-4 py-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:border-accent dark:focus:border-accent focus:outline-none placeholder-gray-500 dark:placeholder-gray-400"
             />
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
               width="24" 
               height="24" 
               viewBox="0 0 24 24"
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500"
             >
               <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
             </svg>
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400">ESC</kbd>
+            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-400 dark:text-gray-500">ESC</kbd>
           </div>
         )}
       </div>
       
       {isExpanded && results.length > 0 && (
-        <div className="absolute top-full right-0 z-50 mt-2 w-full rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
+        <div className="absolute top-full right-0 z-50 mt-2 w-full rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 py-2 shadow-lg">
           {results.slice(0, 5).map(({ item, refIndex }) => (
             <a
               key={refIndex}
               href={`/blog/${item.id}/`}
-              className="block px-4 py-2 hover:bg-gray-100"
+              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
               onClick={closeSearch}
             >
-              <div className="text-sm font-medium text-gray-900">{item.data.title}</div>
+              <div className="text-sm font-medium text-gray-900 dark:text-gray-100">{item.data.title}</div>
               {item.data.excerpt && (
-                <div className="mt-1 text-xs text-gray-500">
+                <div className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                   {item.data.excerpt.slice(0, 100)}...
                 </div>
               )}
               {item.data.tags && item.data.tags.length > 0 && (
                 <div className="mt-1 flex flex-wrap gap-1">
                   {item.data.tags.map(tag => (
-                    <span key={tag} className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
+                    <span key={tag} className="rounded-full bg-gray-100 dark:bg-gray-700 px-2 py-0.5 text-xs text-gray-600 dark:text-gray-300">
                       {tag}
                     </span>
                   ))}

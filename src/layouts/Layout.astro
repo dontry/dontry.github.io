@@ -19,8 +19,28 @@ const posts = await getCollection('blog');
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
+    <script is:inline>
+      // Initialize theme
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+    
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      
+      window.localStorage.setItem('theme', theme);
+    </script>
   </head>
-  <body>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
     <div class="min-h-[calc(100vh-60px)]">
       <NavBar client:load pathname={pathname} posts={posts} />
       <main class="max-w-[860px] w-[calc(100%-2em)] mx-auto py-12 px-4">
@@ -34,8 +54,9 @@ const posts = await getCollection('blog');
 <style is:global>
   html {
     font-family: system-ui, sans-serif;
-    background: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+  
   code {
     font-family:
       Menlo,

@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { sortPosts } from '../../utils/sort';
 
-const posts = await getCollection('blog', ({ data }) => !data.archived);
+const posts = await getCollection('blog', ({ data }: { data: { archived: boolean } }) => !data.archived);
 const sortedPosts = sortPosts(posts);
 ---
 

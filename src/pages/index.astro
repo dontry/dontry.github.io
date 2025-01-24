@@ -5,11 +5,11 @@ import { getCollection } from 'astro:content';
 import { sortPosts } from '../utils/sort';
 import MarkdownExcerpt from '../components/MarkdownExcerpt';
 
-const posts = await getCollection('blog');
+const posts = await getCollection('blog', ({ data }: { data: { archived: boolean } }) => !data.archived);
 const sortedPosts = sortPosts(posts);
 ---
 
-<Layout title={SITE_TITLE}>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   {
     sortedPosts.map((post) => (
       <MarkdownExcerpt
