@@ -9,6 +9,7 @@ import tailwind from '@astrojs/tailwind';
 export default defineConfig({
 	output: 'static',
 	site: 'https://dontry.github.io',
+	base: '/',
 	integrations: [mdx(), sitemap(), react(), tailwind()],
 	markdown: {
 		shikiConfig: {
